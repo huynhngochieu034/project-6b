@@ -12,5 +12,11 @@
   "license": "MIT",
   "devDependencies": {
     "lite-server": "2.4.0"
+  },
+  "dependencies": {
+    "ethjs-abi": "^0.2.1",
+    "truffle-blockchain-utils": "^0.0.10",
+    "truffle-hdwallet-provider": "^1.0.17",
+    "web3": "^1.7.4"
   }
 }
