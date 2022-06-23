@@ -165,7 +165,7 @@ contract SupplyChain {
         Item memory item = Item({
             sku: sku,
             upc: _upc,
-            ownerID: msg.sender,
+            ownerID: _originFarmerID,
             originFarmerID: _originFarmerID,
             originFarmName: _originFarmName,
             originFarmInformation: _originFarmInformation,
@@ -282,7 +282,7 @@ contract SupplyChain {
     function receiveItem(uint256 _upc)
         public
         // Call modifier to check if upc has passed previous supply chain stage
-        received(_upc)
+        shipped(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
     {
         // Update the appropriate fields - ownerID, retailerID, itemState
@@ -299,13 +299,13 @@ contract SupplyChain {
     function purchaseItem(uint256 _upc)
         public
         // Call modifier to check if upc has passed previous supply chain stage
-        purchased(_upc)
+        received(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
     {
         // Update the appropriate fields - ownerID, consumerID, itemState
         items[_upc].ownerID = msg.sender;
-        items[_upc].retailerID = msg.sender;
-        items[_upc].itemState = State.Received;
+        items[_upc].consumerID = msg.sender;
+        items[_upc].itemState = State.Purchased;
 
         // Emit the appropriate event
         emit Purchased(_upc);

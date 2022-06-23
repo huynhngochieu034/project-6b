@@ -1,0 +1,31 @@
+SupplyChain :
+ - address: 0x0b9704b786c7787119098c07d943c158f335a6dd
+ - TxHash: 0x0a00345ebe88c0930e4a1de5e627af5c3788b5e157d70c28bf23e7c373c359dd
+
+ConsumerRole :
+ - address: 0xa64ecd8400f4bd3fd3af478a6069e07bfdb84211
+ - TxHash: 0xfb3438f00c5e981c88deadf8faab41a79a2ae56edfdb37955802790d7bf63fc5
+
+RetailerRole :
+ - address: 0x421fb45691552685258be05ffa944ecb31c4cb04
+ - TxHash: 0x3028d61098fd429251bdbe72622be680607df0966000f97986532a9a8aa08e37
+
+DistributorRole :
+ - address: 0x0e7f39aad3a72bd3c72b54fe482e86da45c29d6a
+ - TxHash: 0x0e9ae2960378ad4ab718ef9293229c6cdeab01a8a81548f87bf2610a40985d59
+
+FarmerRole :
+ - address: 0x1062177dade785964bbc723a3bc11fed4d053a0e
+ - TxHash: 0x35748c0eddc149217e0eb9f9c781a85f74071fcabe263999a88188d482d556ac
+
+
+IPFS: 
+ - import library IpfsHttpClient in index.html
+ - define html in index.html to upload and show image
+ - create function uploadImageIPFS() in app.js to upload image to infura
+
+program version: v1.0.0
+
+node version: v14.17.3
+truffle version: v4.1.14
+web3 version: v1.7.4
