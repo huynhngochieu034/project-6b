@@ -1,7 +1,13 @@
 pragma solidity ^0.4.24;
 
+import "../coffeecore/Ownable.sol";
+import "../coffeeaccesscontrol/FarmerRole.sol";
+import "../coffeeaccesscontrol/DistributorRole.sol";
+import "../coffeeaccesscontrol/RetailerRole.sol";
+import "../coffeeaccesscontrol/ConsumerRole.sol";
+
 // Define a contract 'Supplychain'
-contract SupplyChain {
+contract SupplyChain is Ownable, FarmerRole, DistributorRole, RetailerRole, ConsumerRole {
     // Define 'owner'
     address owner;
 
@@ -160,7 +166,7 @@ contract SupplyChain {
         string _originFarmLatitude,
         string _originFarmLongitude,
         string _productNotes
-    ) public {
+    ) public onlyFarmer {
         // Add the new item as part of Harvest
         Item memory item = Item({
             sku: sku,
@@ -242,6 +248,7 @@ contract SupplyChain {
     function buyItem(uint256 _upc)
         public
         payable
+        onlyDistributor
         // Call modifier to check if upc has passed previous supply chain stage
         forSale(_upc)
         // Call modifer to check if buyer has paid enough
@@ -281,6 +288,7 @@ contract SupplyChain {
     // Use the above modifiers to check if the item is shipped
     function receiveItem(uint256 _upc)
         public
+        onlyRetailer
         // Call modifier to check if upc has passed previous supply chain stage
         shipped(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
@@ -298,6 +306,7 @@ contract SupplyChain {
     // Use the above modifiers to check if the item is received
     function purchaseItem(uint256 _upc)
         public
+        onlyConsumer
         // Call modifier to check if upc has passed previous supply chain stage
         received(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
